@@ -57,18 +57,15 @@
                                 <ul id="navigation">
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="shop.html">shop</a></li>
-                                    <li><a href="about.html">about</a></li>
+                                    <li><a href="{% url 'website:about' %}">about</a></li>
                                     <li class="hot"><a href="#">Latest</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> Product list</a></li>
                                             <li><a href="product_details.html"> Product Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="blog.html">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
+                                    <li><a href="{% url 'blog:list_post' %}">Blog</a>
+                                        
                                     </li>
                                     <li><a href="#">Pages</a>
                                         <ul class="submenu">
@@ -79,7 +76,7 @@
                                             <li><a href="checkout.html">Product Checkout</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{% url 'website:contact' %}">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
