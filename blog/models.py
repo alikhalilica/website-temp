@@ -11,12 +11,12 @@ class Category(models.Model):
         return self.name
 
 
-class Post(models.Model):
+class Post(models.Model):  
 
     STATUS=((0,"draft"),(1,"published"))
     title=models.CharField(max_length=200,unique=True)
     slug=models.SlugField(max_length=200,unique=True)
-    category=models.ManyToManyField(Category)
+    category=models.ManyToManyField(Category) #category__name
     content=models.TextField()
     likes=models.ManyToManyField(User)
     tags=TaggableManager()
