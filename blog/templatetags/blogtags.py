@@ -1,5 +1,6 @@
 from django import template
 from blog.models import Post,Category
+from comment.models import Comment
 register = template.Library()
 
 @register.inclusion_tag("blog/post_categories.html")
@@ -17,3 +18,7 @@ def show_recent_posts(count=3):
     posts = Post.objects.filter(status=1).order_by("created_date")[:count]
     return {'posts':posts}
 
+@register.simple_tag
+def count_comment(slug):
+    comments = Comment.objects.filter(url =slug,approved_comment = True).count()
+    return comments

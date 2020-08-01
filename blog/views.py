@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404 
+from comment.models import Comment
 from django.http import HttpResponse 
 from .models import Post,Category
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -20,8 +21,8 @@ def list_post (request):
 
 def single_post (request,post_slug):
     post = get_object_or_404(Post,slug = post_slug,status=1)
-    context = {'post':post}
+    comments = Comment.objects.filter(url = post.slug,approved_comment = True,parent__isnull=True).order_by("created_date")
+    context = {'post':post,'comments':comments}
     return render(request,"blog/single_post.html",context)
 
 
-# Create your views here.

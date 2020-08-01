@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'website',
     'blog',
     'taggit',
+    'comment',
     #'shop',
     
 ]
