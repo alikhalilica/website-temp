@@ -18,7 +18,7 @@ class Comment(models.Model):
     rating = models.PositiveIntegerField(choices=Rating_modes,null=True,default=None,blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    approved_comment = models.BooleanField()
+    approved_comment = models.BooleanField(default=False)
     parent = models.ForeignKey('self',null=True,on_delete=models.CASCADE,blank=True)
     likes = models.ManyToManyField(User,blank=True)
 
