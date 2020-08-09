@@ -132,14 +132,49 @@
                                     <p class="date">{{comment.created_date}}</p>
                                  </div>
                                  <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                    <a href="#" class="comment-reply-btn btn-reply text-uppercase ">reply</a>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
+                     
                   </div>
+                  
+                     
+                  
 
+                  <div class="comment-reply" style="display:none;">
+                     <form class="form-contact comment_form" method='post'
+                        action="{% url 'blog:single_post' post_slug=post.slug %}" id="commentForm">
+                        {% csrf_token %}
+                        <input name="url" type="hidden" value="{{post.slug}}">
+                        <input name="parent" type="hidden" value="{{comment.pk}}">
+                        <div class="row">
+                           <div class="col-12">
+                              <div class="form-group">
+                                 <textarea class="form-control w-100" name="body" id="id_body" cols="30" rows="9"
+                                    placeholder="Write Comment"></textarea>
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div class="form-group">
+                                 <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                              </div>
+                           </div>
+
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                        </div>
+                     </form>
+
+                  </div>
                   {% for reply in comment.replies.all %}
                   <div class="comment-list">
                      <div class="single-comment justify-content-between d-flex" style="margin-left:40px;">
@@ -159,7 +194,7 @@
                                     <p class="date">{{reply.created_date}}</p>
                                  </div>
                                  <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                    <a href="#" class="btn-reply text-uppercase comment-reply-btn">reply</a>
                                  </div>
                               </div>
                            </div>
@@ -167,18 +202,41 @@
                      </div>
                   </div>
                   {% endfor %}
-                  
+
+
                   {% endfor %}
-
-
                </div>
+
+
                <div class="comment-form">
                   <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" method='post' action="{% url 'blog:single_post' post_slug=post.slug %}" id="commentForm">
+                  <form class="form-contact comment_form" method='post'
+                     action="{% url 'blog:single_post' post_slug=post.slug %}" id="commentForm">
                      {% csrf_token %}
-                     {{form.as_p}}
+                     <input name="url" type="hidden" value="{{post.slug}}">
+                     <input name="parent" type="hidden" value="">
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="form-group">
+                              <textarea class="form-control w-100" name="body" id="id_body" cols="30" rows="9"
+                                 placeholder="Write Comment"></textarea>
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                           </div>
+                        </div>
+
+                     </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send
+                           Message</button>
                      </div>
                   </form>
                </div>
@@ -270,3 +328,20 @@
    <!--================ Blog Area end =================-->
 </main>
 {% endblock%}
+
+{% block javascripts %}
+<script>
+   $(".comment-reply-btn").click(function (event) {
+      event.preventDefault();
+      $(this).parent().parent().parent().parent().parent().parent().next(".comment-reply").fadeToggle();
+      var inner_text = $(this).text();
+      if (inner_text == "reply") {
+         $(this).text('cancel');
+      } else {
+         $(this).text('reply');
+      }
+
+
+   })
+</script>
+{% endblock %}

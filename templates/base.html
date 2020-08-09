@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
- 
+
     <!-- Preloader Start -->
     <header>
         <!-- Header Start -->
@@ -65,7 +65,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="{% url 'blog:list_post' %}">Blog</a>
-                                        
+
                                     </li>
                                     <li><a href="#">Pages</a>
                                         <ul class="submenu">
@@ -77,6 +77,15 @@
                                         </ul>
                                     </li>
                                     <li><a href="{% url 'website:contact' %}">Contact</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="#">Account</a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                       
+                                        </ul>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </nav>
                         </div>
@@ -88,8 +97,10 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+
+                                <li>{% if user.is_authenticated %} {{user.username}} {% endif %} <a href="{% url 'account_login' %}"><span class="flaticon-user"></span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -103,8 +114,8 @@
         <!-- Header End -->
     </header>
 
-{% block content %}
-{% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
 
     <footer>
@@ -243,6 +254,8 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    {% block javascripts %}
+    {% endblock  %}
 
 </body>
 
