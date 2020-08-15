@@ -39,7 +39,7 @@
                                 <a class="d-inline-block" href="{% url 'blog:single_post' post_slug=post.slug %}">
                                     <h2>{{post.title}}</h2>
                                 </a>
-                                <p>{{post.snippet}}.</p>
+                                <p>{{post.content|excerpt:30}}.</p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="fa fa-user"></i> {{post.author}}</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>

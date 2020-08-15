@@ -46,9 +46,39 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'ckeditor',
+    'captcha',
+    
     #'shop',
     
 ]
+
+# ckeditor configuration
+CKEDITOR_UPLOAD_PATH = 'ckeditor_uploads'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': '100%',
+        'toolbar': 'full',
+        'extraPlugins': ','.join([
+            'uploadimage',  # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath',
+            'codesnippet',
+        ]),
+    },
+
+}
 
 SITE_ID = 1
 
@@ -104,6 +134,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'website_temp.wsgi.application'
+
+#dgango allauth setting
+ACCOUNT_FORMS = {
+    'login': 'userprofile.forms.AllauthLoginForm',
+    'signup': 'allauth.account.forms.SignupForm',
+    'add_email': 'allauth.account.forms.AddEmailForm',
+    'change_password': 'allauth.account.forms.ChangePasswordForm',
+    'set_password': 'allauth.account.forms.SetPasswordForm',
+    'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
+}
 
 
 # Database
