@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils import timezone
 # Create your models here.
 
 
@@ -28,6 +29,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_author')  # SET_NULL (null=True)
     image = models.ImageField(upload_to="blog/")
+    published_date = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['-created_date']
@@ -36,7 +38,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:single', kwarg={"slug": str(self.slug)})
+        return reverse('blog:single_post', kwargs={"post_slug": str(self.slug)})
 
     def snippet(self):
         return self.content[0:100]

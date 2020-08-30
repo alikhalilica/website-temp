@@ -3,7 +3,7 @@ from blog.models import Post,Category
 from comment.models import Comment
 from django.utils.html import strip_spaces_between_tags, strip_tags
 from django.utils.text import Truncator
-
+from django.utils import timezone
 
 register = template.Library()
 
@@ -19,7 +19,7 @@ def show_blog_categories():
 
 @register.inclusion_tag('blog/recent_posts.html')
 def show_recent_posts(count=3):
-    posts = Post.objects.filter(status=1).order_by("created_date")[:count]
+    posts = Post.objects.filter(status=1,published_date__lte=timezone.now()).order_by("published_date")[:count]
     return {'posts':posts}
 
 @register.simple_tag

@@ -21,7 +21,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
-    path('blog/',include('blog.urls')),
+    path('blog/',include('blog.urls',namespace='blog')),
+    path('comment/',include('comment.urls',namespace='comment')),
     path('accounts/', include('allauth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('captcha/', include('captcha.urls'))

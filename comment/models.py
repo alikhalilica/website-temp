@@ -14,7 +14,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=100,null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
     body = models.TextField(max_length=500)
-    url = models.SlugField(max_length=200)
+    url = models.CharField(max_length=500)
     rating = models.PositiveIntegerField(choices=Rating_modes,null=True,default=None,blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
