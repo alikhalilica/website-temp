@@ -55,27 +55,19 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">shop</a></li>
+                                    <li><a href="{% url 'website:index' %}">Home</a></li>
+                                 <!--  <li><a href="shop.html">shop</a></li>--> 
                                     <li><a href="{% url 'website:about' %}">about</a></li>
-                                    <li class="hot"><a href="#">Latest</a>
+                                   <!-- <li class="hot"><a href="#">Latest</a>
                                         <ul class="submenu">
                                             <li><a href="shop.html"> Product list</a></li>
                                             <li><a href="product_details.html"> Product Details</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li><a href="{% url 'blog:list_post' %}">Blog</a>
 
                                     </li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
-                                        </ul>
-                                    </li>
+                                    
                                     <li><a href="{% url 'website:contact' %}">Contact</a></li>
                                     {% if user.is_authenticated %}
                                     <li><a href="#">Account</a>

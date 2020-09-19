@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'ckeditor',
     'captcha',
+    'crispy_forms'
     
     #'shop',
     
