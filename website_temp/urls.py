@@ -25,8 +25,10 @@ urlpatterns = [
     path('comment/',include('comment.urls',namespace='comment')),
     path('accounts/', include('allauth.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('captcha/', include('captcha.urls'))
+    path('captcha/', include('captcha.urls')),
+    path('robots.txt', include('robots.urls')),
     #path('shop/',include('shop.urls')),
+
 
 ]
 

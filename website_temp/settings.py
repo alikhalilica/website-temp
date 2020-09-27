@@ -37,22 +37,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'website',
     'blog',
     'taggit',
     'comment',
-    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'ckeditor',
     'captcha',
-    'crispy_forms'
+    'crispy_forms',
+    'robots',
     
     #'shop',
     
 ]
+
 
 # ckeditor configuration
 CKEDITOR_UPLOAD_PATH = 'ckeditor_uploads'
@@ -81,7 +84,11 @@ CKEDITOR_CONFIGS = {
 
 }
 
-SITE_ID = 1
+SITE_ID = 2
+
+# robots.txt configuration
+ROBOTS_USE_SITEMAP = False
+ROBOTS_USE_HOST = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -196,18 +203,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-#media directoies
+##media directoies
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-
-#static directories
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'), os.path.join(
-    BASE_DIR, 'media')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+if not DEBUG:
+    STATICFILES_DIRS = [BASE_DIR+"/assets", ]
 
+    STATIC_ROOT = '/home2/thealib1/public_html/static'
+    MEDIA_ROOT = '/home2/thealib1/public_html/media'
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'), os.path.join(
+        BASE_DIR, 'media')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 MESSAGE_STORAGE ='django.contrib.messages.storage.cookie.CookieStorage'
