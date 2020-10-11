@@ -1,9 +1,11 @@
 {% load static %}
+{% load meta %}
 
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx"{% meta_namespaces_schemaorg %}>
 
-<head>
+<head {% meta_namespaces %}>
+    {% include "meta/meta.html" %}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Watch shop | eCommers</title>
@@ -21,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>

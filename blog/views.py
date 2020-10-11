@@ -23,7 +23,7 @@ def list_post (request):
 
 def single_post (request,post_slug):
     post = get_object_or_404(Post,slug = post_slug,status=1,published_date__lte=timezone.now())   
-    context = {'post':post}
+    context = {'post':post, "meta": post.as_meta()}
     return render(request,"blog/single_post.html",context)
 
 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog',
     'taggit',
     'comment',
+    'meta',
 
     'allauth',
     'allauth.account',
@@ -111,6 +112,21 @@ AUTHENTICATION_BACKENDS = [
   
 ]
 
+# meta configurations
+META_SITE_PROTOCOL = 'http'
+META_SITE_DOMAIN = 'icc-aria.ir'
+META_SITE_TYPE = "website"
+META_USE_SITES = True
+META_DEFAULT_KEYWORDS = ['python','ai','iot','py3','پایتون']
+META_INCLUDE_KEYWORDS = ['python','ai','iot','py3','پایتون']
+META_USE_OG_PROPERTIES = True
+META_USE_TWITTER_PROPERTIES = True
+META_USE_SCHEMAORG_PROPERTIES = True
+META_USE_TITLE_TAG = True
+META_SITE_NAME = "icc-aria"
+META_TWITTER_SITE = "https://icc-aria.ir"
+META_DEFAULT_IMAGE = "/static/img/ai.png"
+#META_FB_TYPES = True
 
 # allauth setting
 LOGIN_REDIRECT_URL ="/"
